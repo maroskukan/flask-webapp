@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% set active_page = 'home' %}
+
+{% block content %}
+<div class="container"></div>
+    <div class="row">
+        <div class="col">
+            <h1>Welcome to my page!</h1>
+        <p>
+            This is the demo application.
+        </p>
+        </div>
+        <img src="{{ url_for('static', filename='images/logo.png') }} " alt="" height=60% widht=60%>
+    </div>
+</div>
+{% endblock %}
