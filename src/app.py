@@ -8,9 +8,14 @@ import os
 app = Flask(__name__)
 views = 0
 
+content = {
+    "header": "Learning Flask",
+    "message": "This the content message"
+    }
+
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', content=content)
 
 
 if __name__ == '__main__':

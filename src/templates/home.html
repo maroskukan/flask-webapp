@@ -2,15 +2,13 @@
 {% set active_page = 'home' %}
 
 {% block content %}
-<div class="container"></div>
+<div class="container text-center">
     <div class="row">
         <div class="col">
-            <h1>Welcome to my page!</h1>
-        <p>
-            This is the demo application.
-        </p>
+            <h2>Welcome to my page!</h2>
+            <p class="lead">{{ content.message }}</p>
+            <img src="{{ url_for('static', filename='images/logo.png') }} " alt="" height=80% widht=80%>
         </div>
-        <img src="{{ url_for('static', filename='images/logo.png') }} " alt="" height=60% widht=60%>
     </div>
 </div>
 {% endblock %}
