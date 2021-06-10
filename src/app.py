@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template
+from model import db
 import os
 
 
@@ -15,8 +16,17 @@ content = {
 
 @app.route('/')
 def home():
-    return render_template('home.html', content=content)
+    return render_template(
+        'home.html',
+        content=content)
 
+
+@app.route('/card')
+def card():
+    card = db[0]
+    return render_template(
+        'card.html',
+        content=card)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
