@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template
+from flask import Flask, render_template, abort, redirect, url_for
 from model import db
 import os
 
@@ -14,11 +14,18 @@ content = {
     "message": "This the content message"
     }
 
+@app.errorhandler(404)
+
+def not_found(e):
+    return render_template(
+        '404.html'
+    )
+
 @app.route('/')
 def home():
     return render_template(
-        'home.html',
-        content=content)
+        'home.html'
+    )
 
 
 @app.route('/card')
@@ -27,6 +34,16 @@ def card():
     return render_template(
         'card.html',
         content=card)
+
+@app.route('/card/<int:index>')
+def card_view(index):
+    try:
+        card = db[index]
+        return render_template(
+            'card.html',
+            content=card)
+    except IndexError:
+        abort(404)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
