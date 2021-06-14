@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% set active_page = 'cards' %}
+{% block title %}Cards{% endblock %}
 
 {% block content %}
 <div class="container text-center">
@@ -15,6 +16,11 @@
             {% else %}
             <p>No questions to show</p>
             {% endif %}
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" href="{{ url_for('add_card') }}" role="button">Add Card</a>
         </div>
     </div>
 </div>

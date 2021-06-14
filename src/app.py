@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, abort, redirect, url_for, jsonify
-from model import db
+from types import MethodType
+from flask import Flask, render_template, abort, redirect, url_for, jsonify, request, flash
+from model import db, save_db
 import os
 
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = "secretkey"
 
 @app.errorhandler(404)
 
@@ -41,6 +42,21 @@ def card(index):
             max_index=max_index)
     except IndexError:
         abort(404)
+
+@app.route('/add_card', methods=["GET", "POST"])
+def add_card():
+    if request.method == "POST":
+        card = {
+            "question": request.form['question'],
+            "answer": request.form['answer']
+        }
+        db.append(card)
+        save_db()
+        flash("Question {} has been successfully submitted".format(
+            request.form.get("question")), "success")
+        return redirect(url_for('cards'))
+    else:
+        return render_template('add_card.html')
 
 @app.route('/api/cards')
 def api_cards():

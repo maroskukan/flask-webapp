@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% set active_page = 'card' %}
+{% block title %}Add new question{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h2>Add Card</h2>
+            <form method="POST" action="{{ url_for('add_card') }}">
+                <div class="form-group">
+                    <label>Question</label>
+                    <input class="form-control" type="text" name="question">
+                </div>
+                <div class="form-group">
+                    <label>Answer</label>
+                    <input class="form-control" type="text" name="answer">
+                </div>
+                <hr>
+                <input class="btn btn-primary form-control" type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
