@@ -7,12 +7,7 @@ import os
 
 
 app = Flask(__name__)
-views = 0
 
-content = {
-    "header": "Learning Flask",
-    "message": "This the content message"
-    }
 
 @app.errorhandler(404)
 
@@ -28,20 +23,23 @@ def home():
     )
 
 
-@app.route('/card')
-def card():
-    card = db[0]
+@app.route('/cards')
+def cards():
+    cards = db
     return render_template(
-        'card.html',
-        content=card)
+        'cards.html',
+        cards=cards)
 
 @app.route('/card/<int:index>')
-def card_view(index):
+def card(index):
     try:
         card = db[index]
+        max_index = len(db) - 1 
         return render_template(
             'card.html',
-            content=card)
+            card=card,
+            index=index,
+            max_index=max_index)
     except IndexError:
         abort(404)
 

@@ -5,9 +5,23 @@
 <div class="container text-center">
     <div class="row">
         <div class="col">
+            {% if card %}
             <h2>Card</h2>
-            <p class="lead fw-bold">Q: {{ content.question }}</p>
-            <p class="lead">A: {{ content.answer }}</p>
+            <p>Q: {{ card.question }}</p>
+            <p>A: {{ card.answer }}</p>
+            <p>
+                {% if index > 0 %}
+                <a class="btn btn-primary" href="{{ url_for('card', index=index-1) }}" role="button">Previous Question</a>
+                {% endif %}
+                {% if index < max_index %}
+                <a class="btn btn-primary" href="{{ url_for('card', index=index+1) }}" role="button">Next Question</a>
+                {% else %}
+                <a class="btn btn-primary" href="{{ url_for('card', index=0) }}" role="button">Start over</a>
+                {% endif %}
+            </p>
+            {% else %}
+            <p>No card to show</p>
+            {% endif %}
         </div>
     </div>
 </div>

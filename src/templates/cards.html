@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% set active_page = 'cards' %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h2>Cards</h2>
+            {% if cards %}
+            {% for card in cards %}
+                    <a href="{{ url_for('card', index=loop.index0) }}" class="list-group-item list-group-item-action">
+                        {{ card.question }}
+                    </a>
+            {% endfor %}
+            {% else %}
+            <p>No questions to show</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
