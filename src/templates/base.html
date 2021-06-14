@@ -20,10 +20,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link "nav-item {{ 'active' if active_page == 'home' else '' }}" aria-current="page" href="{{ url_for('home') }}">Home</a>
+                <a class="nav-link {{ 'active' if active_page == 'home' else '' }}" aria-current="page" href="{{ url_for('home') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link "nav-item {{ 'active' if active_page == 'cards' else '' }}" aria-current="page" href="{{ url_for('cards') }}">Cards</a>
+                <a class="nav-link {{ 'active' if active_page == 'cards' else '' }}" aria-current="page" href="{{ url_for('cards') }}">Cards</a>
               </li>
             </ul>
           </div>
