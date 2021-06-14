@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, abort, redirect, url_for
+from flask import Flask, render_template, abort, redirect, url_for, jsonify
 from model import db
 import os
 
@@ -22,7 +22,6 @@ def home():
         'home.html'
     )
 
-
 @app.route('/cards')
 def cards():
     cards = db
@@ -40,6 +39,17 @@ def card(index):
             card=card,
             index=index,
             max_index=max_index)
+    except IndexError:
+        abort(404)
+
+@app.route('/api/cards')
+def api_cards():
+    return jsonify(db)
+
+@app.route('/api/card/<int:index>')
+def api_card(index):
+    try:
+        return jsonify(db[index])
     except IndexError:
         abort(404)
 
