@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% set active_page = 'card' %}
+{% block title %}Remove question{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h2>Remove Card</h2>
+            <p>Q: {{ card.question }}</p>
+            <p>A: {{ card.answer }}</p>
+            <h4>Are you sure?</h4>
+            <form method="POST" action="#">
+                <input class="btn btn-danger btn-sm" type="submit" value="Yes">
+                <a class="btn btn-primary btn-sm" href="{{ url_for('cards') }}" role="button">No</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

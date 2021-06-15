@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col">
             {% if card %}
-            <h2>Card</h2>
+            <h2>Display Card</h2>
             <p>Q: {{ card.question }}</p>
             <p>A: {{ card.answer }}</p>
             <p>
@@ -19,6 +19,9 @@
                 {% else %}
                 <a class="btn btn-primary" href="{{ url_for('card', index=0) }}" role="button">Start over</a>
                 {% endif %}
+            </p>
+            <p>
+                <a class="btn btn-primary" href="{{ url_for('remove_card', index=index) }}" role="button">Remove card</a>
             </p>
             {% else %}
             <p>No card to show</p>
